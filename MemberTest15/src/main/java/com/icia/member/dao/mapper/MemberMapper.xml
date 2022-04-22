@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+	
+	<insert id="join" parameterType="member">
+		INSERT INTO MEMBERDTO VALUES(#{mId}, #{mPw}, #{mName}, #{mBirth}, #{mGender}, #{mEmail})
+	</insert>
+	
+	<select id="list" resultType="member">
+		SELECT * FROM MEMBERDTO
+	</select>
+	
+	<!-- 회원정보 상세보기 -->
+	<select id="view" parameterType="String" resultType="member">
+		SELECT * FROM MEMBERDTO WHERE MID = #{mId}
+	</select>
+	
+	<!-- 회원정보 삭제 -->
+	<delete id="delete" parameterType="member">
+		DELETE FROM MEMBERDTO WHERE MID = #{mId}
+	</delete>
+	
+	<!-- 회원정보 수정하기 -->
+	<update id="modify" parameterType="member">
+		UPDATE MEMBERDTO 
+		SET MPW = #{mPw}, MNAME = #{mName}, MBIRTH = #{mBirth},
+		MGENDER = #{mGender}, MEMAIL = #{mEmail} WHERE MID = #{mId}
+	</update>
+</mapper>
